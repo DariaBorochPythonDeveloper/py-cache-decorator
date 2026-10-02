@@ -52,28 +52,3 @@ def cache(func: Callable) -> Callable:
         return result
 
     return wrapper
-
-
-@cache
-def long_time_func(ananas: int, banana: int, cytryna: int) -> int:
-    return (ananas ** banana ** cytryna) % (ananas * cytryna)
-
-
-@cache
-def long_time_func_2(n_tuple: tuple, power: int) -> list:
-    return [number ** power for number in n_tuple]
-
-
-long_time_func(1, 2, 3)
-long_time_func(2, 2, 3)
-long_time_func_2((5, 6, 7), 5)
-long_time_func(1, 2, 3)
-long_time_func_2((5, 6, 7), 10)
-long_time_func_2((5, 6, 7), 10)
-
-# Calculating new result
-# Calculating new result
-# Calculating new result
-# Getting from cache
-# Calculating new result
-# Getting from cache
