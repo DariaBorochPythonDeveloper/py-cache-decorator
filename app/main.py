@@ -11,8 +11,8 @@ def make_hashable(value):
 
     if isinstance(value, dict):
         converted_items = []
-        for k, v in value.items():
-            converted_items.append((k, make_hashable(v)))
+        for key, value in value.items():
+            converted_items.append((key, make_hashable(value)))
         return tuple(sorted(converted_items))
 
     if isinstance(value, set):
@@ -35,8 +35,8 @@ def cache(func: Callable) -> Callable:
         safe_args = tuple(safe_args_list)
 
         safe_kwargs_list = []
-        for k, v in kwargs.items():
-            safe_kwargs_list.append((k, make_hashable(v)))
+        for key, value in kwargs.items():
+            safe_kwargs_list.append((key, make_hashable(value)))
         safe_kwargs = tuple(sorted(safe_kwargs_list))
 
         key = (safe_args, safe_kwargs)
