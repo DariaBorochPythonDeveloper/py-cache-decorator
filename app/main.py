@@ -1,8 +1,9 @@
-from typing import Callable
+from typing import Callable, Any
 from functools import wraps
 
 
-def make_hashable(value):
+def make_hashable(value: Any) -> Any:
+    if isinstance(value, str):
     if isinstance(value, list):
         converted_items = []
         for item in value:
@@ -28,7 +29,7 @@ def cache(func: Callable) -> Callable:
     memory = {}
 
     @wraps(func)
-    def wrapper(*args, **kwargs):
+    def wrapper(*args: Any, **kwargs: Any) -> Any:
         safe_args_list = []
         for arg in args:
             safe_args_list.append(make_hashable(arg))
